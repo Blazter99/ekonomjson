@@ -13,14 +13,16 @@ async function getINFO() {
   const [{forvaltning}] = data;
   const [{leverantor}] = data;
   const [{konterat}] = data;
-
   
+  const object = [konto,forvaltning,leverantor,konterat];
+
   console.log(konto);
   console.log(forvaltning);
   console.log(leverantor);
   console.log(konterat);
+  console.log(object);
 
-  document.getElementById("konto").innerHTML = konto;
+  document.getElementById("konto").innerHTML = object;
 
 }
 
