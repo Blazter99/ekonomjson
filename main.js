@@ -3,49 +3,45 @@ const main = document.getElementById("main");
 
 
 
-fetch("https://raw.githubusercontent.com/HackersOfSweden/Ekonomy/main/Levfakturor_Lidingo_Stad_2018.json")
 
-async function getINFO() {
+
+async function getURL() {
   const response = await fetch(url);
   const data = await response.json();
   console.log(data);
+
+  if(response) {
+    show(data);
+  }
  
-  function object() {
-    data.forEach(element => {
-      const ul = document.createElement('ul');
-      const faktnr = document.createElement('li');
-      const forvaltning = document.createElement('li');
-      const konterat = document.createElement('li');
-      const konto = document.createElement('li');
-      const leverantor = document.createElement('li');    
-      const orgnr = document.createElement('li');
+  
+}
+
+ getURL();
 
 
-      faktnr.innerHTML = data['fakt.nr'];
-      forvaltning.innerHTML = data.forvaltning;
-      konterat.innerHTML = data.konterat;
-      konto.innerHTML = data.konto;
-      leverantor.innerHTML = data.leverantor;
-      orgnr.innerHTML = data['org.nr'];
-
-      ul.appendChild(faktnr);
-      ul.appendChild(forvaltning);
-      ul.appendChild(konterat);
-      ul.appendChild(konto);
-      ul.appendChild(leverantor);
-      ul.appendChild(orgnr);
-      main.appendChild(ul);
-      
-    });
+ function show(data) {
+  let tab = 
+      `<div>
+      <ul>fakt.nr</ul>
+      <ul>förvaltning</ul>
+      <ul>konterat</ul>
+      <ul>konto</ul>
+      <ul>leverantör</ul>
+      <ul>org.nr</ul>
+      </div>`;
+  for (let d of data) {
+      tab += `<ul> 
+  <li>${d.faktnr} </li>
+  <li>${d.forvaltning}</li>
+  <li>${d.konterat}</li> 
+  <li>${d.konto}</li> 
+  <li>${d.leverantor}</li>
+  <li>${d.orgnr}</li>                 
+  </ul>`;
   }
   
-  object(data);
- }
-
-getINFO();
+  document.getElementById("main").innerHTML = tab;
+}
 
 
-
-  
-
-  
